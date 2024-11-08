@@ -84,10 +84,14 @@ ret float %x
 
   ```
   George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
-  $ ./generateFun > fun.llGeorge.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
-  $ llc -filetype=obj fun.ll -o fun.objGeorge.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
-  $ clang -shared -o fun.dll fun.objGeorge.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
-  $ clang -o yunzhi_program.exe main.c -L. -lfunGeorge.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+  $ ./generateFun > fun.ll
+  George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+  $ llc -filetype=obj fun.ll -o fun.obj
+  George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+  $ clang -shared -o fun.dll fun.obj
+  George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+  $ clang -o yunzhi_program.exe main.c -L. -lfun
+  George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
   $ ./yunzhi_program
   the (5 + 10)/ 3.00 = -4237.67   !!!!! the error
   the (5 + 10)/ 0.00 = 0.00
@@ -351,6 +355,20 @@ the (5 + 10)/ 0.00 = 0.00
 
 George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/01_src
 $
+
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+$ ./generateFun > fun.ll
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+$ llc -filetype=obj fun.ll -o fun.obj
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+$ clang -shared -o fun.dll fun.obj
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+$ clang -o yunzhi_program.exe main.c -L. -lfun
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/Yunzhi_src
+$ ./yunzhi_program
+  the (5 + 10)/ 3.00 = -4237.67   !!!!! the error
+  the (5 + 10)/ 0.00 = 0.00
+  
 ```
 ## End
 
