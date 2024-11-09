@@ -5,25 +5,31 @@ for a function evaluating the expression "(a + b) / x", where "a" and "b" are 32
 
 Nov 07, 2024 YunzhiLi
 
-### 1. About C compile errors and why CPP was involved.
-```
-The story starts from the errors:
-{
-...
-// Print the generated IR to stdout
-char *ir_string = LLVMPPrintModuleToString(module);
-printf("%s\n", ir_string);
-...
-}
-```
-I encountered below error on my first trying to implement the C PGM for generating the IR.
-/usr/bin/ld: /tmp/assignment-c9a21b.o:assignment.c:(.text+0x174): undefined reference to `LLVMPPrintModuleToString'
-clang-8: error: linker command failed with exit code 1 (use -v to see invocation)
+### 1. The C program which can generated the intermediate Representation code. assignment.c is the source code file. Besieds the C version, I aslo implemented the Cpp version for fun(generateFun.cpp). The two implementated version can run independently.
+C Version: c_version_src
+CPP Version: cpp_version_src
 
-With the google's result:
-The function LLVMPPrintModuleToString is part of the LLVM C API, specifically used for printing the textual representation of an LLVM module.
-However, it appears that this function is not included in the standard LLVM libraries in more recent versions.
-Instead, you can achieve similar functionality using the llvm::Module::print method, which is part of the C++ API. I struggled a lot and could not fix it quickly. So I try to rewrite it with CPP and also followed the c-coding style. I sorry for bring the inconvinence to you/team.
+This is the assignment compilation-logs.
+Put the main.c and assignment.c in the same folder.
+The compile env is VS2022 x64+ Cyginw(clang-8.0.1)
+compile commands
+```
+$ clang -v -g -O3  assignment.c -o assign.exe -L/c/cygwin64/lib `llvm-config --ldflags --system-libs --libs core ` -lLLVMX86CodeGen -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Desc -lLLVMX86Utils
+
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/01_src/add_DivExpression2_IR
+$  llc -filetype=obj fun.ll -o fun.obj
+
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/01_src/add_DivExpression2_IR
+$ clang -shared fun.obj -o fun.dll
+
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/01_src/add_DivExpression2_IR
+$ clang -o yunzhi_program.exe main.c -L. -lfun
+
+George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/01_src/add_DivExpression2_IR
+$ ./yunzhi_program
+
+```
+
 ### 2. Compile environment:
 Visual 2022 Community X64
 
