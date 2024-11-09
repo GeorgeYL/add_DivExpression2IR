@@ -14,6 +14,7 @@ Put the main.c and assignment.c in the same folder.
 The compile env is VS2022 x64+ Cyginw(clang-8.0.1)
 compile commands
 ```
+# Commands to compile the C version: 
 $ clang -v -g -O3  assignment.c -o assign.exe -L/c/cygwin64/lib `llvm-config --ldflags --system-libs --libs core ` -lLLVMX86CodeGen -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Desc -lLLVMX86Utils
 
 George.LeeYZ@YunzhiLi /cygdrive/d/02_WorkSpace/001_BroadR22LLVM/01_src/add_DivExpression2_IR
@@ -56,6 +57,10 @@ InstalledDir: /usr/bin
 5). To build the Cpp PGM which is used for generating the IR code.
 
 ```
+# Commands to compile the C version: 
+$ clang -v -g -O3  assignment.c -o assign.exe -L/c/cygwin64/lib `llvm-config --ldflags --system-libs --libs core ` -lLLVMX86CodeGen -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Desc -lLLVMX86Utils
+
+# Commands to compile the C++ version: 
 $ clang++ -v -g -O3 -o generateFun.exe generateFun.cpp -std=c++17 `llvm-config --ldflags --system-libs --libs core`
 ```
 
